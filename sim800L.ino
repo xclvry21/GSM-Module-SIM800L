@@ -1,9 +1,15 @@
+/**
+ * number
+ * - the phone number who receive the message/call
+ * - change with your number, +63 is used in Philippines
+ * - if "+63..." not works make it into an 11 digit number
+ */
 #include <SoftwareSerial.h>
 int txd_pin = 30;
 int rxd_pin = 31;
 int _timeout;
 String _buffer;
-String number = "+63xxxxxxxxxx"; //-> change with your number, +63 is used in Philippines
+String number = "+63xxxxxxxxxx";
 SoftwareSerial sim(txd_pin, rxd_pin);
 
 void setup() {
@@ -38,7 +44,7 @@ void send_message()
   sim.println("AT+CMGF=1");    //Sets the GSM Module in Text Mode
   delay(200);
   //Serial.println ("Set SMS Number");
-  sim.println("AT+CMGS=\"xxxxxxxxxxx\"\r"); //Mobile phone number to send message, replace x with 11 digit phone number
+  sim.println("AT+CMGS=\"" + number + "\"\r");
   delay(200);
   String SMS = "Hello, how are you?";
   sim.println(SMS);
